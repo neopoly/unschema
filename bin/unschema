@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+#  gets replaced by rubygems anyway ^^
+
+# Commandline interface for the unschema tool
+
+$LOAD_PATH.unshift File.dirname(__FILE__) + '/../lib'
+
+puts "unschema"

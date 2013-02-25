@@ -1,0 +1,3 @@
+module Unschema
+  VERSION = "0.0.1"
+end
