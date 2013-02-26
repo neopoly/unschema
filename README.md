@@ -1,5 +1,7 @@
 # Unschema - rebase your schema.rb
 
+[![Build Status](https://travis-ci.org/neopoly/unschema.png?branch=develop)](https://travis-ci.org/neopoly/unschema)
+
 Splits your schema.rb into separate migrations per table.
 
 Every table migration contains a create_table and additional add_index calls.
