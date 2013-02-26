@@ -41,8 +41,36 @@ module Unschema
 
     def dump_table_calls(table_name, calls)
       File.open(File.join(migrations_path, "#{next_migration}_create_#{table_name}.rb"), "w") do |f|
-        f << "content"
+        f << "class Create#{table_name.gsub(/^(\w)/){|s| s.upcase }.gsub(/(_\w)/){|s| s[-1, 1].upcase} } < ActiveRecord::Migration\n"
+        
+        f << "  def change\n"
+
+        calls.each do |call|
+          str = "    #{call.name} #{stringify_args call.args}"
+
+          if call.block
+            receiver = call.block.name
+            str += " do |#{receiver}|\n"
+
+            call.block.calls.each do |block_call|
+              str += "      #{receiver}.#{block_call.name} #{stringify_args block_call.args}\n"
+            end
+
+            str += "    end\n"
+          else
+            str += "\n"
+          end
+
+
+          f << str
+        end
+
+        f << "  end\nend"
       end
+    end
+
+    def stringify_args(args)
+      args.inspect.gsub(/^\[|\]$/,"")
     end
 
     def next_migration
