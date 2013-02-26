@@ -21,14 +21,14 @@ ActiveRecord::Schema.define(:version => 20130222131355) do
   end
 
   add_index "table1", ["id"], :name => "the_index_1", :unique => true
-  add_index "table1", ["diesnt_make_sende"], :name => "the_index_2", :unique => true, :wrong_attr => 1
+  add_index "table1", ["doesnt_make_sende"], :name => "the_index_2", :unique => true, :wrong_attr => 1
 
-  create_table "table2", :force => true do |t|
+  create_table "the_table2", :force => true do |t|
     t.date    "date"
     t.integer "max_online",                    :default => 0
   end
 
-  add_index "table2", ["date"], :name => "index_statistics_on_date_and"
+  add_index "the_table2", ["date"], :name => "index_statistics_on_date_and"
 
   create_table "abc" do |t|
     t.string "defgh"
