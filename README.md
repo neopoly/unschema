@@ -1,6 +1,6 @@
 # Unschema - rebase your schema.rb
 
-[![Build Status](https://travis-ci.org/neopoly/unschema.png?branch=develop)](https://travis-ci.org/neopoly/unschema)
+[![Build Status](https://travis-ci.org/neopoly/unschema.png?branch=master)](https://travis-ci.org/neopoly/unschema)
 
 Splits your schema.rb into separate migrations per table.
 
