@@ -26,6 +26,11 @@ Or install it yourself as:
 
     usage: unschema [SCHEMA_FILE] [MIGRATIONS_DIR] [START_VERSION]
 
+## TODO
+
+* Auto-detect Rails directory and use correct defaults.
+* Generate prettier migrations (ident, options hashes, newlines)
+
 ## Contributing
 
 1. Fork it
