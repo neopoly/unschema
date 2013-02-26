@@ -1,6 +1,6 @@
 # Unschema - rebase your schema.rb
 
-Splits yout schema.rb into separate migrations per table.
+Splits your schema.rb into separate migrations per table.
 
 Every table migration contains a create_table and additional add_index calls.
 
