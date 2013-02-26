@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-  puts "usage: unschema [SCHEMA_FILE] [MIGRATIONS_DIR] [START_VERSION]"
+    usage: unschema [SCHEMA_FILE] [MIGRATIONS_DIR] [START_VERSION]
 
 ## Contributing
 
