@@ -1,9 +1,13 @@
 require 'active_record'
 
 module Unschema
-  class Base < Struct.new(:schema_file, :migrations_path, :start_version)
+  class Base < Struct.new(:schema_file, :migrations_path, :start_version, :verbose)
     def self.process!(*args)
       new(*args).process
+    end
+
+    def verbose?
+      !!verbose
     end
 
     def process
@@ -20,9 +24,13 @@ module Unschema
         calls_for_tables[table_name] << call
       end
 
+      puts "Found #{calls_for_tables.keys.size} tables" if verbose?
+
       calls_for_tables.sort.each do |table_name, calls|
+        puts "  Dumping #{table_name.inspect}" if verbose?
         dump_table_calls table_name, calls
       end
+      puts "Done" if verbose?
     end
 
     private
