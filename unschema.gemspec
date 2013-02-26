@@ -8,9 +8,9 @@ Gem::Specification.new do |gem|
   gem.version       = Unschema::VERSION
   gem.authors       = ["Jakob Holderbaum"]
   gem.email         = ["jh@neopoly.de"]
-  gem.description   = %q{Splits yout current schema.rb into per-table migrations. Think of it as >rebase< for your migrations.}
-  gem.summary       = %q{Splits yout current schema.rb into per-table migrations}
-  gem.homepage      = ""
+  gem.description   = %q{Splits your current schema.rb into per-table migrations. Think of it as >rebase< for your migrations.}
+  gem.summary       = %q{Splits your current schema.rb into per-table migrations}
+  gem.homepage      = "https://github.com/neopoly/unschema"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

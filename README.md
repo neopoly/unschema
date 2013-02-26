@@ -1,6 +1,10 @@
-# Unschema
+# Unschema - rebase your schema.rb
 
-TODO: Write a gem description
+Splits yout schema.rb into separate migrations per table.
+
+Every table migration contains a create_table and additional add_index calls.
+
+We use it to cleanup older projects, that gets reused as codebase for new projects.
 
 ## Installation
 
@@ -18,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+  puts "usage: unschema [SCHEMA_FILE] [MIGRATIONS_DIR] [START_VERSION]"
 
 ## Contributing
 
