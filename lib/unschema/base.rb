@@ -1,5 +1,3 @@
-require 'active_record'
-
 module Unschema
   class Base < Struct.new(:schema_file, :migrations_path, :start_version, :verbose)
     def self.process!(*args)
