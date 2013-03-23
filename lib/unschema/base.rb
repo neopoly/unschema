@@ -9,8 +9,6 @@ module Unschema
     end
 
     def process
-      disarm_schema_loader!
-
       load schema_file
 
       calls_for_tables = Hash.new{|hash, key| hash[key] = []}
@@ -32,23 +30,11 @@ module Unschema
     end
 
     private
-    def disarm_schema_loader!
-      ActiveRecord::Schema.class_eval do
-        class << self
-          attr_accessor :intermediator
-        end
-
-        def self.define(*args, &block)
-          self.intermediator ||= Unschema::SchemaIntermediator.new
-          self.intermediator.process(*args, &block)
-        end
-      end
-    end
 
     def dump_table_calls(table_name, calls)
       File.open(File.join(migrations_path, "#{next_migration}_create_#{table_name}.rb"), "w") do |f|
         f << "class Create#{table_name.gsub(/^(\w)/){|s| s.upcase }.gsub(/(_\w)/){|s| s[-1, 1].upcase} } < ActiveRecord::Migration\n"
-        
+
         f << "  def change\n"
 
         calls.each do |call|
