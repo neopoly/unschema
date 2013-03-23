@@ -13,40 +13,40 @@ class EndToEndTest < TestCase
     assert_equal ["1001_create_abc.rb", "1002_create_table1.rb", "1003_create_the_table2.rb"], Dir[migrations_path.join "*.rb"].map{|path| File.basename(path)}.sort
 
     assert_migration "1001_create_abc.rb", <<-MIGRATION
-    class CreateAbc < ActiveRecord::Migration
-      def change
-        create_table "abc" do |t|
-          t.string "defgh"
+      class CreateAbc < ActiveRecord::Migration
+        def change
+          create_table "abc" do |t|
+            t.string "defgh"
+          end
         end
       end
-    end
     MIGRATION
 
     assert_migration "1002_create_table1.rb", <<-MIGRATION
-    class CreateTable1 < ActiveRecord::Migration
-      def change
-        create_table "table1", {:force=>true} do |t|
-          t.string "str"
-          t.integer "int"
-          t.datetime "created_at"
-          t.datetime "updated_at"
+      class CreateTable1 < ActiveRecord::Migration
+        def change
+          create_table "table1", {:force=>true} do |t|
+            t.string "str"
+            t.integer "int"
+            t.datetime "created_at"
+            t.datetime "updated_at"
+          end
+          add_index "table1", ["id"], {:name=>"the_index_1", :unique=>true}
+          add_index "table1", ["doesnt_make_sende"], {:name=>"the_index_2", :unique=>true, :wrong_attr=>1}
         end
-        add_index "table1", ["id"], {:name=>"the_index_1", :unique=>true}
-        add_index "table1", ["doesnt_make_sende"], {:name=>"the_index_2", :unique=>true, :wrong_attr=>1}
       end
-    end
     MIGRATION
 
     assert_migration "1003_create_the_table2.rb", <<-MIGRATION
-    class CreateTheTable2 < ActiveRecord::Migration
-      def change
-        create_table "the_table2", {:force=>true} do |t|
-          t.date "date"
-          t.integer "max_online", {:default=>0}
+      class CreateTheTable2 < ActiveRecord::Migration
+        def change
+          create_table "the_table2", {:force=>true} do |t|
+            t.date "date"
+            t.integer "max_online", {:default=>0}
+          end
+          add_index "the_table2", ["date"], {:name=>"index_statistics_on_date_and"}
         end
-        add_index "the_table2", ["date"], {:name=>"index_statistics_on_date_and"}
       end
-    end
     MIGRATION
   end
 
@@ -55,7 +55,7 @@ class EndToEndTest < TestCase
   def assert_migration(path, expect)
     actual = File.read(migrations_path.join path)
 
-    assert_equal expect.chomp.gsub(/^\s*/,""), actual.gsub(/^\s*/,"")
+    assert_equal expect.unindent.chomp, actual.unindent
   end
 
   def schema_file
