@@ -8,11 +8,11 @@ class EndToEndTest < TestCase
   end
 
   def test_schema_to_migrations
-    Unschema::Base.process!(schema_file, migrations_path.to_s, 1000)
+    Unschema::Base.process!(schema_file, migrations_path.to_s)
 
-    assert_equal ["1001_create_abc.rb", "1002_create_table1.rb", "1003_create_the_table2.rb"], Dir[migrations_path.join "*.rb"].map{|path| File.basename(path)}.sort
+    assert_equal ["20130222131356_create_abc.rb", "20130222131357_create_table1.rb", "20130222131358_create_the_table2.rb"], Dir[migrations_path.join "*.rb"].map{|path| File.basename(path)}.sort
 
-    assert_migration "1001_create_abc.rb", <<-MIGRATION
+    assert_migration "20130222131356_create_abc.rb", <<-MIGRATION
       class CreateAbc < ActiveRecord::Migration
         def change
           create_table "abc" do |t|
@@ -22,7 +22,7 @@ class EndToEndTest < TestCase
       end
     MIGRATION
 
-    assert_migration "1002_create_table1.rb", <<-MIGRATION
+    assert_migration "20130222131357_create_table1.rb", <<-MIGRATION
       class CreateTable1 < ActiveRecord::Migration
         def change
           create_table "table1", {:force=>true} do |t|
@@ -37,7 +37,7 @@ class EndToEndTest < TestCase
       end
     MIGRATION
 
-    assert_migration "1003_create_the_table2.rb", <<-MIGRATION
+    assert_migration "20130222131358_create_the_table2.rb", <<-MIGRATION
       class CreateTheTable2 < ActiveRecord::Migration
         def change
           create_table "the_table2", {:force=>true} do |t|

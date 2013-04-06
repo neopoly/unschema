@@ -9,9 +9,9 @@ module ActiveRecord
       attr_accessor :intermediator
     end
 
-    def self.define(*args, &block)
+    def self.define(options={}, &block)
       self.intermediator ||= Unschema::SchemaIntermediator.new
-      self.intermediator.process(*args, &block)
+      self.intermediator.process(options, &block)
     end
   end
 end
