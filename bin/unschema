@@ -8,12 +8,11 @@ $LOAD_PATH.unshift File.dirname(__FILE__) + '/../lib'
 require 'unschema'
 
 if ARGV.size != 3
-  puts "usage: unschema [SCHEMA_FILE] [MIGRATIONS_DIR] [START_VERSION]"
+  puts "usage: unschema [SCHEMA_FILE] [MIGRATIONS_DIR]"
   exit 1
 end
 schema_file = ARGV[0]
 migrations_path = ARGV[1]
-start_version = ARGV[2].to_i
 
 puts "Processing #{schema_file.inspect}"
-Unschema::Base.process!(schema_file, migrations_path, start_version, true)
+Unschema::Base.process!(schema_file, migrations_path, true)

@@ -1,5 +1,5 @@
 module Unschema
-  class Base < Struct.new(:schema_file, :migrations_path, :start_version, :verbose)
+  class Base < Struct.new(:schema_file, :migrations_path, :verbose)
     def self.process!(*args)
       new(*args).process
     end
@@ -10,6 +10,8 @@ module Unschema
 
     def process
       load schema_file
+
+      @version = ActiveRecord::Schema.intermediator.version
 
       calls_for_tables = Hash.new{|hash, key| hash[key] = []}
 
@@ -66,9 +68,7 @@ module Unschema
     end
 
     def next_migration
-      @next_migration ||= start_version
-
-      @next_migration += 1
+      @version += 1
     end
 
   end
