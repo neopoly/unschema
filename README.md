@@ -24,7 +24,7 @@ Or install it yourself as:
 
 ## Usage
 
-    usage: unschema [SCHEMA_FILE] [MIGRATIONS_DIR] [START_VERSION]
+    usage: unschema [SCHEMA_FILE] [MIGRATIONS_DIR]
 
 ## TODO
 
