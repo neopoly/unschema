@@ -7,7 +7,7 @@ $LOAD_PATH.unshift File.dirname(__FILE__) + '/../lib'
 
 require 'unschema'
 
-if ARGV.size != 3
+if ARGV.size != 2
   puts "usage: unschema [SCHEMA_FILE] [MIGRATIONS_DIR]"
   exit 1
 end
