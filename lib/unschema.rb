@@ -1,4 +1,5 @@
 require "unschema/version"
 require "unschema/base"
+require "unschema/migration_dumper"
 require "unschema/schema_intermediator"
 require "unschema/fake_schema"
