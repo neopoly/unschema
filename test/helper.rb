@@ -10,8 +10,15 @@ end
 
 class String
   def unindent
-    matched = %r{^\s*}.match self.split("\n").first
-    indent = matched.end(0)
-    self.gsub(%r{^\s{#{indent}}}, '')
+    gsub(%r{^\s{#{indentation}}}, '')
+  end
+
+  def indentation
+    first_line = split("\n").first
+    %r{^\s*}.match(first_line).end(0)
+  end
+
+  def indent(indentation)
+    gsub(%r{^}, indentation)
   end
 end
