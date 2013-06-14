@@ -1,6 +1,6 @@
 module Unschema
   class SchemaIntermediator
-    attr_reader :root, :version
+    attr_reader :version
 
     def process(options, &block)
       @version = options[:version] || 0
@@ -9,7 +9,7 @@ module Unschema
     end
 
     def calls
-      root.calls
+      @root.calls
     end
 
     class Call
