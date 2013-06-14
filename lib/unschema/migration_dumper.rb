@@ -43,7 +43,7 @@ module Unschema
 
     def stringify_call(call)
       args    = stringify_args(call.args)
-      options = stringify_options(call.options)
+      options = stringify_options(call.options) unless call.options.empty?
       [ args, options ].compact.join(", ")
     end
 
@@ -52,9 +52,7 @@ module Unschema
     end
 
     def stringify_options(options)
-      unless options.empty?
-        options.map { |key, value| "#{key.inspect} => #{value.inspect}" }.join(", ")
-      end
+      options.map { |key, value| "#{key.inspect} => #{value.inspect}" }.join(", ")
     end
   end
 end
