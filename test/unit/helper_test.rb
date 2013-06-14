@@ -24,6 +24,6 @@ foo
 bar
     STR
 
-    assert_equal expect, actual.indent("  ")
+    assert_equal expect, actual.indent(2)
   end
 end

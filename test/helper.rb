@@ -18,7 +18,7 @@ class String
     %r{^\s*}.match(first_line).end(0)
   end
 
-  def indent(indentation)
-    gsub(%r{^}, indentation)
+  def indent(level)
+    gsub(%r{^}, " " * level)
   end
 end
