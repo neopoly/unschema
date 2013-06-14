@@ -15,7 +15,11 @@ class String
 
   def indentation
     first_line = split("\n").first
-    %r{^\s*}.match(first_line).end(0)
+    if match = %r{^\s*}.match(first_line)
+      match.end(0)
+    else
+      0
+    end
   end
 
   def indent(level)
