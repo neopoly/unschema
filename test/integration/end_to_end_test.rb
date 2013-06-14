@@ -55,7 +55,7 @@ class EndToEndTest < TestCase
   def assert_migration(path, expect)
     actual = File.read(migrations_path.join path)
 
-    assert_equal expect.unindent.chomp, actual.unindent
+    assert_string actual, expect
   end
 
   def schema_file
