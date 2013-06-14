@@ -13,11 +13,13 @@ module Unschema
     end
 
     class Call
-      attr_reader :name, :args, :block, :calls
+      attr_reader :name, :args, :options, :block, :calls
+
       def initialize(name, *args, &block)
-        @name = name
-        @args = args
-        @calls = []
+        @name     = name
+        @args     = args
+        @options  = Hash === args.last ? args.pop : {}
+        @calls    = []
 
         process_block!(block) if block
       end
@@ -27,6 +29,7 @@ module Unschema
       end
 
       private
+
       def process_block!(block)
         @block = self.class.new("t")
         block.call(@block)

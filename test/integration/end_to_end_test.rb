@@ -25,14 +25,14 @@ class EndToEndTest < TestCase
     assert_migration "20130222131357_create_table1.rb", <<-MIGRATION
       class CreateTable1 < ActiveRecord::Migration
         def change
-          create_table "table1", {:force=>true} do |t|
+          create_table "table1", :force => true do |t|
             t.string "str"
             t.integer "int"
             t.datetime "created_at"
             t.datetime "updated_at"
           end
-          add_index "table1", ["id"], {:name=>"the_index_1", :unique=>true}
-          add_index "table1", ["doesnt_make_sende"], {:name=>"the_index_2", :unique=>true, :wrong_attr=>1}
+          add_index "table1", ["id"], :name => "the_index_1", :unique => true
+          add_index "table1", ["doesnt_make_sende"], :name => "the_index_2", :unique => true, :wrong_attr => 1
         end
       end
     MIGRATION
@@ -40,11 +40,11 @@ class EndToEndTest < TestCase
     assert_migration "20130222131358_create_the_table2.rb", <<-MIGRATION
       class CreateTheTable2 < ActiveRecord::Migration
         def change
-          create_table "the_table2", {:force=>true} do |t|
+          create_table "the_table2", :force => true do |t|
             t.date "date"
-            t.integer "max_online", {:default=>0}
+            t.integer "max_online", :default => 0
           end
-          add_index "the_table2", ["date"], {:name=>"index_statistics_on_date_and"}
+          add_index "the_table2", ["date"], :name => "index_statistics_on_date_and"
         end
       end
     MIGRATION

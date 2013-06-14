@@ -20,14 +20,14 @@ module Unschema
     private
 
     def dump_call(call)
-      str = "    #{call.name} #{stringify_args call.args}"
+      str = "    #{call.name} #{stringify_call call}"
 
       if call.block
         receiver = call.block.name
         str << " do |#{receiver}|\n"
 
         call.block.calls.each do |block_call|
-          str << "      #{receiver}.#{block_call.name} #{stringify_args block_call.args}\n"
+          str << "      #{receiver}.#{block_call.name} #{stringify_call block_call}\n"
         end
 
         str << "    end"
@@ -41,8 +41,20 @@ module Unschema
       @table_name.gsub(/^(\w)/){|s| s.upcase }.gsub(/(_\w)/) { |s| s[-1, 1].upcase }
     end
 
+    def stringify_call(call)
+      args    = stringify_args(call.args)
+      options = stringify_options(call.options)
+      [ args, options ].compact.join(", ")
+    end
+
     def stringify_args(args)
       args.inspect.gsub(/^\[|\]$/,"")
+    end
+
+    def stringify_options(options)
+      unless options.empty?
+        options.map { |key, value| "#{key.inspect} => #{value.inspect}" }.join(", ")
+      end
     end
   end
 end
