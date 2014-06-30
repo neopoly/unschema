@@ -2,7 +2,7 @@ require 'minitest/autorun'
 
 require 'unschema'
 
-class TestCase <  MiniTest::Unit::TestCase
+class TestCase <  Minitest::Test
   def assert_string(actual, expect)
     assert_equal expect.unindent.chomp, actual.unindent
   end

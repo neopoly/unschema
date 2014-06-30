@@ -18,4 +18,5 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_development_dependency  'rake'
+  gem.add_development_dependency  'minitest', '~> 5.3.5'
 end
