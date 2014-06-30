@@ -1,6 +1,6 @@
 # Unschema - rebase your schema.rb
 
-[![Build Status](https://travis-ci.org/neopoly/unschema.svg?branch=master)](https://travis-ci.org/neopoly/unschema) [![Gem Version](https://badge.fury.io/rb/unschema.svg)](http://badge.fury.io/rb/unschema) [![Code Climate](http://img.shields.io/codeclimate/github/neopoly/unschema.svg)](https://codeclimate.com/github/neopoly/unschema)
+[![Build Status](http://img.shields.io/travis/neopoly/unschema.svg?branch=master)](https://travis-ci.org/neopoly/unschema) [![Gem Version](http://img.shields.io/gem/v/unschema.svg)](https://rubygems.org/gems/unschema) [![Code Climate](http://img.shields.io/codeclimate/github/neopoly/unschema.svg)](https://codeclimate.com/github/neopoly/unschema)
 
 Splits your schema.rb into separate migrations per table.
 
