@@ -10,28 +10,43 @@ module Unschema
 
     def process
       load schema_file
+      preset_version
 
-      @version = ActiveRecord::Schema.intermediator.version
-
-      calls_for_tables = Hash.new{|hash, key| hash[key] = []}
-
-      ActiveRecord::Schema.intermediator.calls.each do |call|
-        table_name = call.args.first.to_s if [:create_table, :add_index].include?(call.name)
-        raise "Don't now how to process #{call.name.inspect}" unless table_name
-
-        calls_for_tables[table_name] << call
-      end
-
-      puts "Found #{calls_for_tables.keys.size} tables" if verbose?
+      calls_for_tables = collect_calls(intermediator.calls)
+      log "Found #{calls_for_tables.size} tables"
 
       calls_for_tables.sort.each do |table_name, calls|
-        puts "  Dumping #{table_name.inspect}" if verbose?
+        log "  Dumping #{table_name.inspect}"
         dump_table_calls table_name, calls
       end
-      puts "Done" if verbose?
+
+      log "Done"
     end
 
     private
+
+    def log(string)
+      puts string if verbose?
+    end
+
+    def preset_version
+      @version = intermediator.version
+    end
+
+    def intermediator
+      ActiveRecord::Schema.intermediator
+    end
+
+    def collect_calls(calls)
+      calls_for_tables = Hash.new { |hash, key| hash[key] = [] }
+
+      calls.each do |call|
+        table_name = call.first_arg
+        calls_for_tables[table_name] << call
+      end
+
+      calls_for_tables
+    end
 
     def dump_table_calls(table_name, calls)
       file = File.join(migrations_path, "#{next_migration}_create_#{table_name}.rb")

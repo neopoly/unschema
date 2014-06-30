@@ -24,6 +24,10 @@ module Unschema
         process_block!(block) if block
       end
 
+      def first_arg
+        args.first
+      end
+
       def method_missing(name, *args, &block)
         @calls << Call.new(name, *args, &block)
       end
