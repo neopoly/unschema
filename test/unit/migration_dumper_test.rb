@@ -17,9 +17,9 @@ class MigrationDumperTest < TestCase
       }
 
     assert_change <<-STR
-      create_table "table", :force => true do |t|
-        t.string "uid", :limit => 32, :unique => true
-        t.integer "amount"
+      create_table :table, :force => true do |t|
+        t.string :uid, :limit => 32, :unique => true
+        t.integer :amount
       end
     STR
   end
@@ -30,8 +30,8 @@ class MigrationDumperTest < TestCase
       create_call(:add_index, "table", %w[composite index])
 
     assert_change <<-STR
-      add_index "table", "uid", :unique => true
-      add_index "table", ["composite", "index"]
+      add_index :table, "uid", :unique => true
+      add_index :table, ["composite", "index"]
     STR
   end
 

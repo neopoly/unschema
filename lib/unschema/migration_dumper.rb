@@ -48,6 +48,7 @@ module Unschema
     end
 
     def stringify_args(args)
+      args[0] = args[0].to_sym
       args.inspect.gsub(/^\[|\]$/,"")
     end
 
