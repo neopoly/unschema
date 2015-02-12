@@ -1,8 +1,23 @@
+[github]: https://github.com/neopoly/unschema
+[doc]: http://rubydoc.info/github/neopoly/unschema/master/file/README.md
+[gem]: https://rubygems.org/gems/unschema
+[travis]: https://travis-ci.org/neopoly/unschema
+[codeclimate]: https://codeclimate.com/github/neopoly/unschema
+[inchpages]: https://inch-ci.org/github/neopoly/unschema
+
 # Unschema - rebase your schema.rb
 
-[![Build Status](http://img.shields.io/travis/neopoly/unschema.svg?branch=master)](https://travis-ci.org/neopoly/unschema) [![Gem Version](http://img.shields.io/gem/v/unschema.svg)](https://rubygems.org/gems/unschema) [![Code Climate](http://img.shields.io/codeclimate/github/neopoly/unschema.svg)](https://codeclimate.com/github/neopoly/unschema) [![Inline docs](http://inch-ci.org/github/neopoly/unschema.svg?branch=master)](http://inch-ci.org/github/neopoly/unschema)
-
 Splits your schema.rb into separate migrations per table.
+
+[![Travis](https://img.shields.io/travis/neopoly/unschema.svg?branch=master)][travis]
+[![Gem Version](https://img.shields.io/gem/v/unschema.svg)][gem]
+[![Code Climate](https://img.shields.io/codeclimate/github/neopoly/unschema.svg)][codeclimate]
+[![Test Coverage](https://codeclimate.com/github/neopoly/unschema/badges/coverage.svg)][codeclimate]
+[![Inline docs](https://inch-ci.org/github/neopoly/unschema.svg?branch=master&style=flat)][inchpages]
+
+[Gem][gem] |
+[Source][github] |
+[Documentation][doc]
 
 Every table migration contains a create_table and additional add_index calls.
 
