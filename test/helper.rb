@@ -9,7 +9,7 @@ require 'unschema'
 
 class TestCase <  Minitest::Test
   def assert_string(actual, expect)
-    assert_equal expect.unindent.chomp, actual.unindent
+    assert_equal expect.unindent, actual.unindent
   end
 end
 

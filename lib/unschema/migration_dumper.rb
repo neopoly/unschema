@@ -14,7 +14,7 @@ module Unschema
       end
 
       f << "  end\n"
-      f << "end"
+      f << "end\n"
     end
 
     private
