@@ -1,13 +1,11 @@
-if ENV['CODECLIMATE_REPO_TOKEN']
-  require "codeclimate-test-reporter"
-  CodeClimate::TestReporter.start
-end
+require 'simplecov'
+SimpleCov.start
 
 require 'minitest/autorun'
 
 require 'unschema'
 
-class TestCase <  Minitest::Test
+class TestCase < Minitest::Test
   def assert_string(actual, expect)
     assert_equal expect.unindent, actual.unindent
   end
