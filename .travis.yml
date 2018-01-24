@@ -5,10 +5,10 @@ after_success:
   - '[ "${TRAVIS_JOB_NUMBER#*.}" = "1" ] && bundle exec codeclimate-test-reporter'
 rvm:
   - ruby-head
+  - 2.4.3
+  - 2.3.6
   - 2.2
   - 2.1
-  - 2.0
-  - 1.9.3
 env:
   global:
     - CODECLIMATE_REPO_TOKEN=5149a81a58ceefa61850827c29b5fecc303d15c038b7ad4fb12e8279d2be47ab
