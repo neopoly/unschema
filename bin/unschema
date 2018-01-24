@@ -7,12 +7,13 @@ $LOAD_PATH.unshift File.dirname(__FILE__) + '/../lib'
 
 require 'unschema'
 
-if ARGV.size != 2
-  puts "usage: unschema [SCHEMA_FILE] [MIGRATIONS_DIR]"
+if ARGV.size != 3
+  puts "usage: unschema [SCHEMA_FILE] [MIGRATIONS_DIR] [RAILS_VERSION]"
   exit 1
 end
 schema_file = ARGV[0]
 migrations_path = ARGV[1]
+rails_version = ARGV[2]
 
 puts "Processing #{schema_file.inspect}"
-Unschema::Base.process!(schema_file, migrations_path, true)
+Unschema::Base.process!(schema_file, migrations_path, true, rails_version)

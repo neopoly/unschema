@@ -1,5 +1,5 @@
 module Unschema
-  class Base < Struct.new(:schema_file, :migrations_path, :verbose)
+  class Base < Struct.new(:schema_file, :migrations_path, :verbose, :rails_version)
     def self.process!(*args)
       new(*args).process
     end
@@ -51,7 +51,7 @@ module Unschema
     def dump_table_calls(table_name, calls)
       file = File.join(migrations_path, "#{next_migration}_create_#{table_name}.rb")
       File.open(file, "w") do |f|
-        MigrationDumper.new(table_name, calls).dump_to(f)
+        MigrationDumper.new(table_name, calls, rails_version: rails_version).dump_to(f)
       end
     end
 
