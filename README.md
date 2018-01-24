@@ -27,7 +27,7 @@ We use it to cleanup older projects, that gets reused as codebase for new projec
 
 Add this line to your application's Gemfile:
 
-    gem 'unschema'
+    gem 'unschema', '~> 0.1.0'
 
 And then execute:
 
@@ -53,3 +53,15 @@ Or install it yourself as:
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Release
+
+Follow these steps to release this gem:
+
+    # Bump version in
+    edit lib/unschema/version.rb
+    edit README.md
+
+    git commit -m "Release X.Y.Z"
+
+    rake release
