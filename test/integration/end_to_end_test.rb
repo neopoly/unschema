@@ -8,12 +8,13 @@ class EndToEndTest < TestCase
   end
 
   def test_schema_to_migrations
-    Unschema::Base.process!(schema_file, migrations_path.to_s)
+    rails_version = "5.1"
+    Unschema::Base.process!(schema_file, migrations_path.to_s, true, rails_version)
 
-    assert_equal ["20130222131356_create_abc.rb", "20130222131357_create_table1.rb", "20130222131358_create_the_table2.rb"], Dir[migrations_path.join "*.rb"].map{|path| File.basename(path)}.sort
+    assert_equal ["20130222131356_create_abc.rb", "20130222131357_create_table1.rb", "20130222131358_create_the_table2.rb"], Dir[migrations_path.join "*.rb"].map { |path| File.basename(path) }.sort
 
     assert_migration "20130222131356_create_abc.rb", <<-MIGRATION
-      class CreateAbc < ActiveRecord::Migration
+      class CreateAbc < ActiveRecord::Migration[#{rails_version}]
         def change
           create_table "abc" do |t|
             t.string "defgh"
@@ -23,7 +24,7 @@ class EndToEndTest < TestCase
     MIGRATION
 
     assert_migration "20130222131357_create_table1.rb", <<-MIGRATION
-      class CreateTable1 < ActiveRecord::Migration
+      class CreateTable1 < ActiveRecord::Migration[#{rails_version}]
         def change
           create_table "table1", :force => true do |t|
             t.string "str"
@@ -38,7 +39,7 @@ class EndToEndTest < TestCase
     MIGRATION
 
     assert_migration "20130222131358_create_the_table2.rb", <<-MIGRATION
-      class CreateTheTable2 < ActiveRecord::Migration
+      class CreateTheTable2 < ActiveRecord::Migration[#{rails_version}]
         def change
           create_table "the_table2", :force => true do |t|
             t.date "date"

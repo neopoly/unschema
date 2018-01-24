@@ -1,12 +1,13 @@
 module Unschema
   class MigrationDumper
-    def initialize(table_name, calls)
+    def initialize(table_name, calls, rails_version:)
       @table_name = table_name
-      @calls      = calls
+      @calls = calls
+      @rails_version = rails_version
     end
 
     def dump_to(f)
-      f << "class Create#{table_name_camelcased} < ActiveRecord::Migration\n"
+      f << "class Create#{table_name_camelcased} < ActiveRecord::Migration[#{@rails_version}]\n"
       f << "  def change\n"
 
       @calls.each do |call|
@@ -38,17 +39,17 @@ module Unschema
     end
 
     def table_name_camelcased
-      @table_name.gsub(/^(\w)/){|s| s.upcase }.gsub(/(_\w)/) { |s| s[-1, 1].upcase }
+      @table_name.gsub(/^(\w)/) { |s| s.upcase }.gsub(/(_\w)/) { |s| s[-1, 1].upcase }
     end
 
     def stringify_call(call)
-      args    = stringify_args(call.args)
+      args = stringify_args(call.args)
       options = stringify_options(call.options) unless call.options.empty?
-      [ args, options ].compact.join(", ")
+      [args, options].compact.join(", ")
     end
 
     def stringify_args(args)
-      args.inspect.gsub(/^\[|\]$/,"")
+      args.inspect.gsub(/^\[|\]$/, "")
     end
 
     def stringify_options(options)

@@ -39,7 +39,7 @@ Or install it yourself as:
 
 ## Usage
 
-    usage: unschema [SCHEMA_FILE] [MIGRATIONS_DIR]
+    usage: unschema [SCHEMA_FILE] [MIGRATIONS_DIR] [RAILS_VERSION]
 
 ## TODO
 
