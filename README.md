@@ -27,7 +27,7 @@ We use it to cleanup older projects, that gets reused as codebase for new projec
 
 Add this line to your application's Gemfile:
 
-    gem 'unschema', '~> 0.1.0'
+    gem 'unschema', '~> 0.2.0'
 
 And then execute:
 
